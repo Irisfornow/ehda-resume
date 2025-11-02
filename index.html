@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ehda Sadeghi - Chemistry Resume</title>
+    <title>Ehda Sadeghi - Chemistry Resume (Bilingual)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+        /* Including Noto Sans Arabic for Persian/Arabic script */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Noto+Sans+Arabic:wght@300;400;600&display=swap');
         
         :root {
             --forest-green: #2d5016;
@@ -28,6 +29,7 @@
             font-family: 'Exo 2', sans-serif;
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+                /* This is the correct way to link your image! */
                 url('bg.jpg');
             background-size: cover;
             background-position: center;
@@ -36,6 +38,18 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* PERSIAN FONT & DIRECTION STYLES */
+        .font-persian {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            direction: rtl; /* Right-to-left for Persian */
+            text-align: right;
+        }
+        .font-english {
+            font-family: 'Exo 2', sans-serif;
+            direction: ltr; 
+            text-align: left;
         }
         
         .cyber-grid {
@@ -81,16 +95,14 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            background: rgba(240, 248, 255, 0.25);
-            border: 1px solid rgba(45, 80, 22, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 
-                0 0 30px rgba(45, 80, 22, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: none;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+            backdrop-filter: none;
             position: relative;
-            backdrop-filter: blur(20px);
         }
+
         
         .header::before {
             content: "";
@@ -182,7 +194,25 @@
             font-size: 0.95em;
             box-shadow: 0 4px 15px rgba(34, 139, 34, 0.4);
         }
+
+        /* NEW: Styles for the inner bilingual structure */
+        .bilingual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .english-side {
+            border-right: 1px solid rgba(125, 211, 192, 0.3);
+            padding-right: 20px;
+        }
         
+        .persian-side {
+            padding-left: 20px;
+        }
+        /* End of NEW styles */
+
+        /* YOUR ORIGINAL 2-COLUMN LAYOUT */
         .main-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -224,6 +254,11 @@
             position: relative;
             padding-left: 20px;
         }
+
+        .section-title.font-persian {
+            padding-left: 0;
+            padding-right: 20px;
+        }
         
         .section-title::before {
             content: "";
@@ -237,10 +272,16 @@
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(125, 211, 192, 0.8);
         }
+
+        .section-title.font-persian::before {
+            left: auto;
+            right: 0;
+        }
         
         .skills-grid {
+            /* This is now used INSIDE the bilingual-grid */
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 25px;
         }
         
@@ -260,6 +301,10 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+        }
+
+        .font-persian .skill-list {
+            justify-content: flex-end;
         }
         
         .skill-tag {
@@ -327,6 +372,16 @@
             font-size: 0.95em;
             line-height: 1.6;
         }
+
+        /* NEW: Certificate Category Title */
+        .cert-category-title {
+            font-weight: 600;
+            color: var(--forest-green);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed var(--accent-cyan);
+        }
         
         .cert-item {
             display: flex;
@@ -345,6 +400,11 @@
             padding-left: 10px;
             background: rgba(125, 211, 192, 0.15);
             border-radius: 8px;
+        }
+
+        .font-persian .cert-item:hover {
+            padding-left: 0;
+            padding-right: 10px;
         }
         
         .cert-name {
@@ -380,12 +440,25 @@
             position: relative;
             padding-left: 25px;
         }
+
+        .font-persian .other-skills-list li {
+            padding-left: 0;
+            padding-right: 25px;
+        }
         
         .other-skills-list li::before {
+            content: "•"; /* Your original file was missing the bullet point */
             position: absolute;
-            left: 0;
+            left: 10px; /* Adjusted from 0 to 10px for spacing */
             top: 8px;
+            color: var(--accent-cyan); /* Added color */
+            font-weight: 900; /* Added weight */
             filter: drop-shadow(0 0 5px rgba(45, 80, 22, 0.5));
+        }
+
+        .font-persian .other-skills-list li::before {
+            left: auto;
+            right: 10px;
         }
         
         .floating-particles {
@@ -434,6 +507,34 @@
             animation: typing 3s steps(40, end) infinite;
         }
         
+         .project-like-box {
+            background: rgba(240, 248, 255, 0.15); 
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-cyan);
+            padding: 20px; 
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px; 
+            transition: all 0.3s ease;
+            position: relative; 
+        }
+
+        .project-like-box:hover {
+            background: rgba(125, 211, 192, 0.2);
+            transform: translateX(5px);
+            border-left-color: var(--forest-green);
+            box-shadow: 0 5px 15px rgba(45, 80, 22, 0.2);
+        }
+
+        .project-like-box .english-side {
+            border-right: 1px solid rgba(125, 211, 192, 0.3);
+            padding-right: 20px;
+        }
+
+        .project-like-box .persian-side {
+            padding-left: 20px;
+        }
+
+        
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
@@ -456,6 +557,21 @@
                 width: 150px;
                 height: 150px;
             }
+
+            /* NEW: Stack bilingual items on mobile */
+            .bilingual-grid {
+                grid-template-columns: 1fr;
+            }
+            .english-side {
+                border-right: none;
+                border-bottom: 1px dashed rgba(125, 211, 192, 0.3);
+                padding-bottom: 20px;
+                padding-right: 0;
+            }
+            .persian-side {
+                padding-top: 20px;
+                padding-left: 0;
+            }
         }
         
         @media (max-width: 640px) {
@@ -471,6 +587,8 @@
                 font-size: 1.8em;
             }
         }
+
+
     </style>
 </head>
 <body>
@@ -481,104 +599,263 @@
     <div class="container">
         <div class="header">
             <div class="profile-container">
-                <img src="IMG_2934.jpg" alt="Ehda Sadeghi" class="profile-image">
+                <img src="IMG_2934.jpg" alt="Ehda Sadeghi" class="profile-image" onerror="this.src='https://placehold.co/200x200/2d5016/7dd3c0?text=EHDA'; this.onerror=null;">
             </div>
-            <h1 class="name">EHDA SADEGHI</h1>
-            <p class="age">22 years old</p>
-            <p class="degree">Bachelor of Science in Pure Chemistry</p>
-            <p class="university">Alzahra University, Tehran, Iran</p>
-            <div class="gpa">GPA: 17.77 • Ranked 5th in Faculty</div>
+
+            <!-- Bilingual Header -->
+                        <!-- BOX: Name, Degree, and University -->
+            <div class="bilingual-grid project-like-box">
+                <div class="english-side font-english">
+                    <h1 class="name">EHDA SADEGHI</h1>
+                    <p class="age">22 years old</p>
+                    <p class="degree">Bachelor of Science in Pure Chemistry</p>
+                    <p class="university">Alzahra University, Tehran, Iran</p>
+                </div>
+                <div class="persian-side font-persian">
+                    <h1 class="name" style="font-size: 3em;">اهدا صادقی</h1>
+                    <p class="age">۲۲ ساله</p>
+                    <p class="degree">کارشناسی شیمی محض </p>
+                    <p class="university">دانشگاه الزهرا، تهران, ایران</p>
+                </div>
+            </div>
+
+
+
+            <div class="gpa">
+                <span class="font-english">GPA: 17.77</span>  <span class="font-english" style="margin-left: 10px;">| Ranked 5th in Faculty</span>
+                <span class="font-persian">معدل: ۱۷.۷۷</span>
+                <span class="font-persian" style="margin-right: 10px;">| رتبه پنجم دانشکده</span>
+            </div>
         </div>
         
         <div class="main-content">
             <div class="left-column">
                 <div class="section">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Laboratory Techniques</h3>
-                            <div class="skill-list">
-                                <span class="skill-tag">ISO/IEC 17025 – Jahad Daneshgahi Sanati Sharif</span>
-                                <span class="skill-tag">GC–MS</span>
-                                <span class="skill-tag">HPLC</span>
-                                <span class="skill-tag">Instrumental Analysis</span>
-                                <span class="skill-tag">Sample Preparation</span>
-                                <span class="skill-tag">Solution Preparation</span>
-                                <span class="skill-tag">Water Quality Analysis</span>
-                                <span class="skill-tag">Soil & Water Quality Analysis </span>
+                    <div class="bilingual-grid">
+                        <div class="english-side">
+                            <h2 class="section-title font-english">Technical Skills</h2>
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <div class="skill-category">
+                                    <h3>Advanced Laboratory Skills</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">ISO/IEC 17025 Quality Standards – Jahad Daneshgahi Sanati Sharif</span>
+                                        <span class="skill-tag">Sample Preparation Technique – Jahad Daneshgahi Sanati Sharif</span>
+                                        <span class="skill-tag">Chemistry Lab Technician – Jahad Daneshgahi Sanati Sharif</span>
+                                    </div>
+                                </div>
+                                    <h3>Advanced Analytical Techniques</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">HPLC (High-Performance LC)</span>
+                                        <span class="skill-tag">LC-MS/MS (LC-Tandem MS)</span>
+                                        <span class="skill-tag">GC-MS (Gas Chromatography-MS)</span>
+                                        <span class="skill-tag">ICP-MS (Inductively Coupled Plasma-MS)</span>
+                                        <span class="skill-tag">UV-Vis Spectrometry</span>
+                                        <span class="skill-tag">FTIR Spectrometry</span>
+                                        <span class="skill-tag">AAS (Atomic Absorption Spec.)</span>
+                                        <span class="skill-tag">AES (Atomic Emission Spec.)</span>
+                                        <span class="skill-tag">XRF (X-Ray Fluorescence)</span>
+                                        <span class="skill-tag">SEM (Scanning Electron Microscopy)</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>Software & Chemometrics</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">MATLAB</span>
+                                        <span class="skill-tag">ChemDraw</span>
+                                        <span class="skill-tag">OriginPro</span>
+                                        <span class="skill-tag">Chemissian</span>
+                                        <span class="skill-tag">MiniTab</span>
+                                        <span class="skill-tag">Design-Expert</span>
+                                        <span class="skill-tag">ImageJ</span>
+                                        <span class="skill-tag">QSAR</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>General Laboratory Skills</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">Sample Preparation</span>
+                                        <span class="skill-tag">Solution Preparation</span>
+                                        <span class="skill-tag">Water Quality Analysis</span>
+                                        <span class="skill-tag">Soil & Water Quality Analysis</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        
-                        <div class="skill-category">
-                            <h3>Software & Analysis</h3>
-                            <div class="skill-list">
-                                <span class="skill-tag">MATLAB</span>
-                                <span class="skill-tag">ChemDraw</span>
-                                <span class="skill-tag">OriginPro</span>
-                                <span class="skill-tag">Chemissian</span>
-                                <span class="skill-tag">MiniTab</span>
-                                <span class="skill-tag">Design-Expert</span>
-                                <span class="skill-tag">ImageJ</span>
-                                <span class="skill-tag">QSAR</span>
+                        <div class="persian-side font-persian">
+                            <h2 class="section-title font-persian">مهارت‌های فنی</h2>
+                             <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h3> مهارت‌های پیشرفته آزمایشگاهی</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">ایزو ۱۷۰۲۵ – جهاد دانشگاهی صنعتی شریف</span>
+                                        <span class="skill-tag">آماده‌سازی نمونه – جهاد دانشگاهی صنعتی شریف</span>
+                                        <span class="skill-tag">تکنسین آزمایشگاه شیمی – جهاد دانشگاهی صنعتی شریف</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>تکنیک‌های آنالیز پیشرفته</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">کروماتوگرافی مایع با کارایی بالا (HPLC)</span>
+                                        <span class="skill-tag">کروماتوگرافی گازی–طیف‌سنجی جرمی (GC-MS)</span>
+                                        <span class="skill-tag">طیف‌سنجی فرابنفش–مرئی (UV-Vis)</span>
+                                        <span class="skill-tag">طیف‌سنجی تبدیل فوریه مادون قرمز (FTIR)</span>
+                                        <span class="skill-tag">طیف‌سنجی جذب اتمی (AAS)</span>
+                                        <span class="skill-tag">فلوئورسانس اشعه ایکس (XRF)</span>
+                                        <span class="skill-tag">میکروسکوپ الکترونی روبشی (SEM)</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>نرم‌افزار و کمومتریکس</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">MATLAB</span>
+                                        <span class="skill-tag">ChemDraw</span>
+                                        <span class="skill-tag">OriginPro</span>
+                                        <span class="skill-tag">Chemissian</span>
+                                        <span class="skill-tag">MiniTab</span>
+                                        <span class="skill-tag">Design-Expert</span>
+                                        <span class="skill-tag">ImageJ</span>
+                                        <span class="skill-tag">QSAR</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>مهارت‌های آزمایشگاهی</h3>
+                                    <div class="skill-list">
+                                        <span class="skill-tag">آماده‌سازی نمونه</span>
+                                        <span class="skill-tag"> محلول سازی </span>
+                                        <span class="skill-tag">آنالیز کیفیت آب</span>
+                                        <span class="skill-tag">آنالیز کیفیت خاک و آب</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="section">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="project-item">
-                        <div class="project-title">Analysis of Pseudo-First-Order Behavior in Second-Order Reaction</div>
-                        <div class="project-description">
-                            Developed computational models using MATLAB to analyze kinetic deviations and fit experimental absorbance data via advanced curve fitting techniques.
+                    <div class="bilingual-grid">
+                        <div class="english-side">
+                            <h2 class="section-title font-english">Featured Projects</h2>
+                            <div class="project-item">
+                                <div class="project-title">Analysis of Pseudo-First-Order Behavior in Second-Order Reaction</div>
+                                <div class="project-description">
+                                    <span style="font-weight: 600; color: var(--light-green);">Goal:</span> Analyze complex kinetic deviations and fit absorbance data.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">Action:</span> Developed computational models using **MATLAB** to fit experimental data via advanced curve fitting.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">Result:</span> Successfully modeled Pseudo-First-Order behavior, validating proficiency in data-driven physical chemistry.
+                                </div>
+                            </div>
+                            <div class="project-item">
+                                <div class="project-title">HPLC-DAD Absorbance Data Analysis & MLR Modeling</div>
+                                <div class="project-description">
+                                    <span style="font-weight: 600; color: var(--light-green);">Goal:</span> Accurately estimate analyte concentrations from complex chromatographic datasets.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">Action:</span> Designed regression-based models (**MLR**) in **MATLAB** for multivariate analysis of HPLC-DAD data.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">Result:</span> Achieved **accurate concentration estimation**, showcasing expertise in chemometrics.
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-title">HPLC-DAD Absorbance Data Analysis & MLR Modeling</div>
-                        <div class="project-description">
-                            Designed and implemented regression-based models in MATLAB for multivariate chemical data analysis and accurate concentration estimation using chromatographic data.
+                        <div class="persian-side font-persian">
+                            <h2 class="section-title font-persian">پروژه‌های تحقیقاتی</h2>
+                            <div class="project-item">
+                                <div class="project-title">تحلیل رفتار شبه‌درجه اول در واکنش درجه دوم</div>
+                                <div class="project-description">
+                                    <span style="font-weight: 600; color: var(--light-green);">هدف:</span> تحلیل انحرافات سینتیکی پیچیده و برازش دقیق داده‌های جذب.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">اقدام:</span> توسعه مدل‌های محاسباتی در **MATLAB** برای برازش داده‌های تجربی از طریق تکنیک‌های پیشرفته برازش منحنی.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">نتیجه:</span> مدل‌سازی موفق رفتار شبه‌درجه اول، و تأیید تخصص در به‌کارگیری ابزارهای داده‌محور برای شیمی فیزیک.
+                                </div>
+                            </div>
+                             <div class="project-item">
+                                <div class="project-title">تحلیل داده‌های جذب HPLC-DAD و مدل‌سازی MLR</div>
+                                <div class="project-description">
+                                    <span style="font-weight: 600; color: var(--light-green);">هدف:</span> برآورد دقیق غلظت آنالیت‌ها از مجموعه داده‌های پیچیده کروماتوگرافی.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">اقدام:</span> طراحی مدل‌های رگرسیونی (**MLR**) در **MATLAB** برای تحلیل چندمتغیره داده‌های HPLC-DAD.
+                                    <br>
+                                    <span style="font-weight: 600; color: var(--light-green);">نتیجه:</span> دستیابی به **برآورد دقیق غلظت**، نشان‌دهنده تخصص در کمومتریکس.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="section">
-                    <h2 class="section-title">Professional Experience</h2>
-                    <div class="internship-item">
-                        <div class="internship-title">Research Institute of Color Science and Technology</div>
-                        <div class="internship-description">
-                            <strong>Summer Internship (3 months)</strong><br>
-                            Worked under Professor Mahmoudi's supervision in the Environmental Laboratory, gaining hands-on experience in advanced analytical techniques and environmental chemistry applications.
+                    <div class="bilingual-grid">
+                        <div class="english-side">
+                            <h2 class="section-title font-english">Professional Experience</h2>
+                            <div class="internship-item">
+                                <div class="internship-title">Research Institute of Color Science and Technology</div>
+                                <div class="internship-description">
+                                    <strong>Summer Internship (3 months)</strong><br>
+                                    Worked under Professor Mahmoudi's supervision in the Environmental Laboratory, gaining hands-on experience in advanced analytical techniques and environmental chemistry applications.
+                                </div>
+                                <!-- Internship Certificate Link -->
+                                <div class="cert-item" style="padding: 10px 0 0 0; border: none;">
+                                    <span class="cert-name" style="font-style: italic;">Certificate of Completion</span>
+                                    <a href="./internship_cert.pdf" target="_blank" class="cert-link">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="persian-side font-persian">
+                             <h2 class="section-title font-persian">تجربه حرفه‌ای</h2>
+                            <div class="internship-item">
+                                <div class="internship-title">پژوهشگاه علوم و فناوری رنگ</div>
+                                <div class="internship-description">
+                                    <strong>کارآموزی تابستانی (۳ ماه)</strong><br>
+                                    تحت نظر پروفسور محمودی در آزمایشگاه محیط زیست، کسب تجربه عملی در تکنیک‌های آنالیز رنگ و کاربردهای شیمی محیط زیست.
+                                </div>
+                                <!-- Internship Certificate Link (Persian) -->
+                                <div class="cert-item" style="padding: 10px 0 0 0; border: none;">
+                                    <span class="cert-name" style="font-style: italic;">گواهی پایان دوره</span>
+                                    <a href="./internship_cert.pdf" target="_blank" class="cert-link">مشاهده</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="section">
-
-                <h2 class="section-title">Additional Employment</h2>
-
-                <div class="internship-item">
-                    <div class="internship-title">Administrative Staff – Education Department, Alzahra University</div>
-                    <div class="internship-description">
-                        <strong>1 year</strong><br>
-                        Developed organizational and communication skills through managing educational activities.
+                    <div class="bilingual-grid">
+                        <div class="english-side">
+                            <h2 class="section-title font-english">Additional Employment</h2>
+                            <div class="internship-item">
+                                <div class="internship-title">Administrative Staff – Education Dept, Alzahra University</div>
+                                <div class="internship-description">
+                                    <strong>1 year</strong><br>
+                                    Developed organizational and communication skills through managing educational activities.
+                                </div>
+                            </div>
+                            <div class="internship-item">
+                                <div class="internship-title">English Language Instructor</div>
+                                <div class="internship-description">
+                                    <strong>2 years</strong><br>
+                                    Enhanced presentation and teaching skills; delivered lessons effectively to diverse student groups.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="persian-side font-persian">
+                            <h2 class="section-title font-persian">اشتغالات دیگر</h2>
+                            <div class="internship-item">
+                                <div class="internship-title">کارمند اداری – معاونت آموزشی، دانشگاه الزهرا</div>
+                                <div class="internship-description">
+                                    <strong>۱ سال</strong><br>
+                                    توسعه مهارت‌های سازمانی و ارتباطی از طریق مدیریت فعالیت‌های آموزشی.
+                                </div>
+                            </div>
+                            <div class="internship-item">
+                                <div class="internship-title">مدرس زبان انگلیسی</div>
+                                <div class="internship-description">
+                                    <strong>۲ سال</strong><br>
+                                    تقویت مهارت‌های ارائه و تدریس؛ ارائه مؤثر دروس به گروه‌های مختلف دانش‌آموزی.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="internship-item">
-                    <div class="internship-title">English Language Instructor</div>
-                    <div class="internship-description">
-                        <strong>2 years</strong><br>
-                        Enhanced presentation and teaching skills; delivered lessons effectively to diverse student groups.
-                    </div>
-                </div>
-
-               
-
-</div>
-
-                
                 
                 <div class="terminal">
                     <div class="terminal-text">Analyzing chemical compounds in misty forest conditions...</div>
@@ -587,60 +864,138 @@
             
             <div class="right-column">
                 <div class="section">
-                    <h2 class="section-title">Certifications</h2>
-                    <div class="cert-item">
-                        <span class="cert-name">Solubilization & HPLC–GC Methods</span>
-                        <a href="./document1.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">X-Ray Fluorescence (XRF) Workshop</span>
-                        <a href="./document2.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Scanning Electron Microscope (SEM)</span>
-                        <a href="./document3.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Python Programming</span>
-                        <a href="./document4.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Microsoft Excel (Advanced)</span>
-                        <a href="./document5.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Nanocatalyst Synthesis Workshop</span>
-                        <a href="./document6.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Smart Drug Delivery Workshop</span>
-                        <a href="./document7.pdf" target="_blank" class="cert-link">View</a>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">Adobe Photoshop Training</span>
-                        <a href="./document8.png" target="_blank" class="cert-link">View</a>
+                    <div class="bilingual-grid" style="gap: 15px;">
+                        <div class="english-side" style="border: none; padding: 0;">
+                            <h2 class="section-title font-english" style="font-size: 1.3em;">Certifications</h2>
+                            
+                            <h3 class="cert-category-title">Analytical & Quality</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">Solubilization & HPLC–GC</span>
+                                <a href="./document1.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">X-Ray Fluorescence (XRF)</span>
+                                <a href="./document2.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Scanning Electron (SEM)</span>
+                                <a href="./document3.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+
+                            <h3 class="cert-category-title" style="margin-top: 20px;">Computational & Materials</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">Python Programming</span>
+                                <a href="./document4.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Nanocatalyst Synthesis</span>
+                                <a href="./document6.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Smart Drug Delivery</span>
+                                <a href="./document7.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            
+                            <h3 class="cert-category-title" style="margin-top: 20px;">General Software</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">Microsoft Excel (Adv)</span>
+                                <a href="./document5.pdf" target="_blank" class="cert-link">View</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Adobe Photoshop</span>
+                                <a href="./document9.png" target="_blank" class="cert-link">View</a>
+                            </div>
+                        </div>
+                        <div class="persian-side font-persian" style="border: none; padding: 0;">
+                            <h2 class="section-title font-persian" style="font-size: 1.3em;">گواهینامه‌ها</h2>
+                            
+                            <h3 class="cert-category-title">آنالیز و کیفیت</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">روش‌های HPLC–GC</span>
+                                <a href="./document1.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">X-Ray Fluorescence (XRF)</span>
+                                <a href="./document2.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">میکروسکوپ الکترونی (SEM)</span>
+                                <a href="./document3.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+
+                            <h3 class="cert-category-title" style="margin-top: 20px;">محاسبات و مواد</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">برنامه‌نویسی پایتون</span>
+                                <a href="./document4.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">سنتز نانوکاتالیست</span>
+                                <a href="./document6.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">دارورسانی هوشمند</span>
+                                <a href="./document7.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            
+                            <h3 class="cert-category-title" style="margin-top: 20px;">نرم‌افزار عمومی</h3>
+                            <div class="cert-item">
+                                <span class="cert-name">مایکروسافت اکسل (پیشرفته)</span>
+                                <a href="./document5.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">ادوبی فتوشاپ</span>
+                                <a href="./document9.pdf" target="_blank" class="cert-link">مشاهده</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
 
                  <div class="section">
-                    <h2 class="section-title">Additional Skills</h2>
-                    <ul class="other-skills-list">
-                        <li>Fluent in English</li>
-                        <li>Intermediate Spanish (B1)</li>
-                        <li>Adobe Photoshop & Illustrator</li>
-                        <li>Advanced Microsoft Office</li>
-                        <li>Proficient in CRM software for data management and reporting</li>
-                    </ul>
+                    <div class="bilingual-grid">
+                        <div class="english-side" style="border: none; padding: 0;">
+                            <h2 class="section-title font-english">Additional Skills</h2>
+                            <ul class="other-skills-list">
+                                <li>Fluent in English</li>
+                                <li>Intermediate Spanish (B1)</li>
+                                <li>Adobe Photoshop & Illustrator</li>
+                                <li>Advanced Microsoft Office</li>
+                                <li>Proficient in CRM software for data management and reporting</li>
+                            </ul>
+                        </div>
+                         <div class="persian-side font-persian" style="border: none; padding: 0;">
+                            <h2 class="section-title font-persian"> مهارت های دیگر  </h2>
+                            <ul class="other-skills-list font-persian">
+                                <li>مسلط به زبان انگلیسی</li>
+                                <li>اسپانیایی (B1)</li>
+                                <li>ادوبی فتوشاپ و ایلوستریتور</li>
+                                <li>آفیس مایکروسافت (پیشرفته)</li>
+                                <li>مسلط به نرم‌افزارهای CRM</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 
                 <div class="section">
-                    <h2 class="section-title">Activities</h2>
-                    <div class="activity-item">
-                        <div class="activity-title">University Chemistry Society</div>
-                        <div class="activity-description">
-                            Active member for the last two semesters. Organized and participated in chemistry-related workshops and academic seminars.
+                    <div class="bilingual-grid">
+                        <div class="english-side">
+                            <h2 class="section-title font-english">Activities</h2>
+                            <div class="activity-item" style="margin-bottom: 0;">
+                                <div class="activity-title">University Chemistry Society</div>
+                                <div class="activity-description">
+                                    Active member for the last two semesters. Organized and participated in chemistry-related workshops and academic seminars.
+                                </div>
+                            </div>
+                        </div>
+                         <div class="persian-side font-persian" style="border: none; padding: 0;">
+                             <h2 class="section-title font-persian">فعالیت‌ها</h2>
+                            <div class="activity-item" style="margin-bottom: 0;">
+                                <div class="activity-title">انجمن علمی شیمی دانشگاه</div>
+                                <div class="activity-description">
+                                    عضو فعال در دو ترم گذشته. سازماندهی و شرکت در کارگاه‌ها و سمینارهای علمی مرتبط با شیمی.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
