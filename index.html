@@ -8,6 +8,9 @@
         /* Including Noto Sans Arabic for Persian/Arabic script */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Noto+Sans+Arabic:wght@300;400;600&display=swap');
         
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
         :root {
             --forest-green: #2d5016;
             --deep-forest: #1a3d0f;
@@ -170,7 +173,53 @@
             margin-bottom: 20px;
             font-weight: 400;
         }
-        
+        /* Contact Info Box */
+        .contact
+         {
+            font-family: 'Exo 2', sans-serif; /* هماهنگ با رزومه */
+            font-size: 0.95em;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: rgba(240, 248, 255, 0.12); /* حالت شیشه‌ای */
+            border: 1px solid rgba(125, 211, 192, 0.35);
+            padding: 10px 18px;
+            border-radius: 14px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(125, 211, 192, 0.25);
+            backdrop-filter: blur(18px) saturate(140%);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        /* حالت فارسی */
+        .font-persian.contact {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+
+        /* افکت هاور ملایم */
+        .contact:hover {
+            box-shadow: 0 0 20px rgba(125, 211, 192, 0.4);
+            transform: translateY(-2px);
+            border-color: var(--accent-cyan);
+        }
+
+        /* آیکون‌ها و فاصله‌ها */
+        .contact span, 
+        .contact i, 
+        .contact svg, 
+        .contact::before {
+            vertical-align: middle;
+        }
+
+        .contact .icon {
+            margin: 0 6px;
+            font-size: 1.1em;
+        }
+
+
+                
         .degree {
             font-size: 1.2em;
             color: var(--text-dark);
@@ -610,6 +659,7 @@
                     <p class="age">22 years old</p>
                     <p class="degree">Bachelor of Science in Pure Chemistry</p>
                     <p class="university">Alzahra University, Tehran, Iran</p>
+                    <p class="contact">📧 Ehdasadeghi81@gmail.com | 📞 +98 919 245 9153 </p>
                 </div>
                 <div class="persian-side font-persian">
                     <h1 class="name" style="font-size: 3em;">اهدا صادقی</h1>
@@ -1071,3 +1121,4 @@
     </script>
 </body>
 </html>
+
